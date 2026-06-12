@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>أحمد | مصمم صفحات هبوط لتحويل الزوار إلى عملاء</title>
+    <meta name="description" content="أساعدك في تصميم صفحات هبوط احترافية تضاعف مبيعاتك وتزيد من ثقة عملائك. تصميم يجمع بين علم النفس والجمال.">
+
+    <!-- Fonts: Noto Kufi Arabic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- Icons: FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+    <!-- Custom Config -->
+    <style>
+        :root {
+            --color-primary: #6808F8;
+            --color-secondary: #3000B8;
+            --color-dark: #180848;
+            --font-main: 'Noto Kufi Arabic', sans-serif;
+        }
+        html{
+          scroll-padding-top: 64px;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: #0f0329; /* Deep fallback color */
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Hero Background */
+        .hero-bg {
+            background-color: var(--color-dark);
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 1600 800'%3E%3Cg %3E%3Cpolygon fill='%2328086b' points='1600 160 0 460 0 350 1600 50'/%3E%3Cpolygon fill='%2338088e' points='1600 260 0 560 0 450 1600 150'/%3E%3Cpolygon fill='%234808b2' points='1600 360 0 660 0 550 1600 250'/%3E%3Cpolygon fill='%235808d5' points='1600 460 0 760 0 650 1600 350'/%3E%3Cpolygon fill='%236808F8' points='1600 800 0 800 0 750 1600 450'/%3E%3C/g%3E%3C/svg%3E");
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Glassmorphism Utility */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-strong {
+            background: rgba(24, 8, 72, 0.75);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f0329;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--color-primary);
+            border-radius: 4px;
+        }
+
+        /* Animations */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hamburger Animation */
+        .hamburger line {
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+        .hamburger.active line:nth-child(1) {
+            transform: translateY(4.5px) rotate(45deg);
+        }
+        .hamburger.active line:nth-child(2) {
+            opacity: 0;
+        }
+        .hamburger.active line:nth-child(3) {
+            transform: translateY(-4.5px) rotate(-45deg);
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(to right, #fff, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Button Glow */
+        .btn-glow {
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+        .btn-glow::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+        .btn-glow:hover::after {
+            opacity: 1;
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-[#6808F8] selection:text-white">
+<!-- Hamburger Button -->
+            <button id="menu-btn" class="md:hidden text-white focus:outline-none z-60 fixed left-8 top-8">
+                <svg class="hamburger w-8 h-8" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <line x1="4" y1="6" x2="20" y2="6"></line>
+                    <line x1="4" y1="12" x2="20" y2="12"></line>
+                    <line x1="4" y1="18" x2="20" y2="18"></line>
+                </svg>
+            </button>
+    <!-- Floating Navbar -->
+    <nav class="fixed top-4 left-0 right-0 z-50 px-4 md:px-0">
+        <div class="max-w-6xl mx-auto glass-strong rounded-2xl px-6 py-3 flex justify-between items-center transition-all duration-300 shadow-2xl shadow-purple-900/20">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="logo.webp" alt="Ahmed Dev Logo" class="h-10 w-auto object-contain transition-transform group-hover:scale-105">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+                <a href="#services" class="hover:text-white hover:text-purple-400 transition-colors">خدماتي</a>
+                <a href="#projects" class="hover:text-white hover:text-purple-400 transition-colors">أعمالي</a>
+                <a href="#why-me" class="hover:text-white hover:text-purple-400 transition-colors">لماذا أنا؟</a>
+                <!-- WhatsApp Action -->
+                <a href="https://wa.me/249998039517" target="_blank" class="bg-[#25D366] hover:bg-[#128C7E] text-white px-5 py-2 rounded-full flex items-center gap-2 transition-all transform hover:scale-105 shadow-lg shadow-green-900/30">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>تواصل معي</span>
+                </a>
+            </div>
+
+            
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-[#0f0329]/95 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-300 flex flex-col justify-center items-center gap-8 md:hidden">
+            <a href="#services" class="text-2xl font-bold text-white hover:text-[#6808F8] transition-colors mobile-link">خدماتي</a>
+            <a href="#projects" class="text-2xl font-bold text-white hover:text-[#6808F8] transition-colors mobile-link">أعمالي</a>
+            <a href="projects.html" class="text-2xl font-bold text-white hover:text-[#6808F8] transition-colors mobile-link">تصفح كل المشاريع</a>
+            <a href="#why-me" class="text-2xl font-bold text-white hover:text-[#6808F8] transition-colors mobile-link">لماذا أنا؟</a>
+            <a href="https://wa.me/249998039517" class="bg-[#6808F8] text-white px-8 py-3 rounded-full text-xl font-bold shadow-lg shadow-purple-600/40 mobile-link">
+                تواصل واتساب
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-bg min-h-screen flex items-center justify-center pt-24 pb-12 px-4 relative">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent via-[#180848]/50 to-[#0f0329] pointer-events-none"></div>
+        
+        <div class="max-w-4xl mx-auto text-center relative z-10 fade-up">
+            <div class="inline-block px-4 py-1.5 mb-6 rounded-full glass border border-purple-500/30 text-purple-200 text-sm font-semibold tracking-wide animate-pulse">
+                ✨ حول أفكارك إلى مبيعات حقيقية
+            </div>
+            
+            <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+                لا تكتفِ بزيارات عابرة، <br>
+                <span class="text-gradient">اصنع عملاء دائمين</span>
+            </h1>
+            
+            <p class="text-gray-300 text-lg md:text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
+                 موقعك الحالي بخسرك قروش؟ أنا بصمم مواقع و صفحات هبوط (Landing Pages) تعتمد على علم النفس وتجربة المستخدم لتحويل الزوار إلى مشترين من اللحظة الأولى.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <a href="https://wa.me/249998039517" target="_blank" class="btn-glow w-full sm:w-auto bg-[#6808F8] hover:bg-[#5206c4] text-white text-lg font-bold py-4 px-10 rounded-xl transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-3">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    أطلب صفحتك الخارقة الآن
+                </a>
+                <a href="#projects" class="w-full sm:w-auto glass hover:bg-white/10 text-white text-lg font-semibold py-4 px-10 rounded-xl transition-all flex items-center justify-center gap-3">
+                    <span>شاهد أعمالي</span>
+                    <i class="fa-solid fa-arrow-left mt-1"></i>
+                </a>
+            </div>
+            
+            <div class="mt-16 flex flex-wrap justify-center gap-8 text-gray-400 text-sm md:text-base opacity-80">
+                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-[#6808F8]"></i> تصميم متجاوب 100%</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-[#6808F8]"></i> سرعة تحميل فائقة</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-check-circle text-[#6808F8]"></i> تركيز على التحويل (ROI)</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Target Audience (Who is this for?) -->
+    <section class="py-20 bg-[#0f0329] px-4">
+        <div class="max-w-6xl mx-auto">
+            <p class="text-center text-purple-400 font-semibold mb-4">هل أنت منهم؟</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">هذه الخدمة مثالية لك إذا كنت...</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+  <div class="w-14 h-14 bg-emerald-900/50 rounded-full flex items-center justify-center text-2xl text-emerald-400 mb-6">
+    <i class="fa-solid fa-shop"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-3">صاحب مشروع صغير</h3>
+  <p class="text-gray-400 leading-relaxed">
+    عندك مشروع في بدايته ومحتاج صفحة هبوط بسيطة تعرض خدمتك بوضوح وتساعدك في الحصول على أول عملائك.
+  </p>
+</div>
+                <!-- Card 1 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+                    <div class="w-14 h-14 bg-purple-900/50 rounded-full flex items-center justify-center text-2xl text-purple-400 mb-6">
+                        <i class="fa-solid fa-store"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">صاحب متجر إلكتروني</h3>
+                    <p class="text-gray-400 leading-relaxed">عايز صفحة منتج واحدة (Sales Page) تقنع العميل بالشراء فوراً بدون تشتت.</p>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+  <div class="w-14 h-14 bg-red-900/50 rounded-full flex items-center justify-center text-2xl text-red-400 mb-6">
+    <i class="fa-solid fa-location-dot"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-3">عندك بزنس محلي</h3>
+  <p class="text-gray-400 leading-relaxed">
+    عايز صفحة بسيطة وسريعة توصل العميل ليك وتزيد الحجوزات والاتصال المباشر.
+  </p>
+</div>
+                <!-- Card 2 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+  <div class="w-14 h-14 bg-cyan-900/50 rounded-full flex items-center justify-center text-2xl text-cyan-400 mb-6">
+    <i class="fa-solid fa-rocket"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-3">عندك شركة ناشئة</h3>
+  <p class="text-gray-400 leading-relaxed">
+    تحتاج صفحة هبوط تقدم فكرتك بوضوح، تشرح المشكلة والحل، وتجمع المهتمين بسرعة.
+  </p>
+</div>
+                <!-- Card 2 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up delay-100">
+                    <div class="w-14 h-14 bg-purple-900/50 rounded-full flex items-center justify-center text-2xl text-purple-400 mb-6">
+                        <i class="fa-solid fa-chalkboard-user"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">مدرب أو صانع كورسات</h3>
+                    <p class="text-gray-400 leading-relaxed">محتاج لصفحة تسجيل قوية تبرز قيمتك وتملأ مقاعد ورشتك أو دورتك الجاية.</p>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+  <div class="w-14 h-14 bg-pink-900/50 rounded-full flex items-center justify-center text-2xl text-pink-400 mb-6">
+    <i class="fa-solid fa-bullhorn"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-3">عملت حملة إعلانية ممولة</h3>
+  <p class="text-gray-400 leading-relaxed">
+    محتاج لصفحة مخصصة للإعلانات تركز على هدف واحد وتحقق أعلى نسبة تحويل ممكنة.
+  </p>
+</div>
+                <!-- Card 3 -->
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up">
+  <div class="w-14 h-14 bg-blue-900/50 rounded-full flex items-center justify-center text-2xl text-blue-400 mb-6">
+    <i class="fa-solid fa-briefcase"></i>
+  </div>
+  <h3 class="text-xl font-bold mb-3">مقدم خدمة احترافية</h3>
+  <p class="text-gray-400 leading-relaxed">
+    تحتاج صفحة واحدة تشرح خدمتك بوضوح، تبني الثقة، وتحول الزائر إلى عميل متواصل معاك.
+  </p>
+</div>
+                <!-- Card 3 -->
+                
+                <div class="glass p-8 rounded-2xl hover:-translate-y-2 transition-transform duration-300 fade-up delay-200">
+                    <div class="w-14 h-14 bg-purple-900/50 rounded-full flex items-center justify-center text-2xl text-purple-400 mb-6">
+                        <i class="fa-solid fa-briefcase"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">مقدم خدمات B2B</h3>
+                    <p class="text-gray-400 leading-relaxed">تبحث عن عملاء جادين (Leads) بجودة عالية بدلاً من الاستفسارات العشوائية.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pain vs Solution Section -->
+    <section class="py-20 bg-[#180848] relative overflow-hidden px-4">
+        <!-- Decoration -->
+        <div class="absolute top-0 right-0 w-64 h-64 bg-purple-600/10 rounded-full blur-3xl"></div>
+        
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <!-- Left: The Problem -->
+            <div class="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6">لماذا تفشل معظم المواقع؟</h2>
+                <div class="space-y-6">
+                    <div class="flex items-start gap-4">
+                        <div class="text-red-500 text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">تصميم مزدحم ومشتت</h4>
+                            <p class="text-gray-400 text-sm">الزائر يضيع ولا يعرف أين يضغط، فيغادر خلال 3 ثوانٍ.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="text-red-500 text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">بطء قاتل في التحميل</h4>
+                            <p class="text-gray-400 text-sm">كل ثانية تأخير تخسرك 20% من التحويلات المحتملة.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4">
+                        <div class="text-red-500 text-xl mt-1"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div>
+                            <h4 class="font-bold text-lg">نصوص ضعيفة لا تبيع</h4>
+                            <p class="text-gray-400 text-sm">كلام إنشائي ممل لا يخاطب مشاعر العميل ولا يقنعه.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right: My Solution -->
+            <div class="glass p-8 md:p-10 rounded-3xl border border-purple-500/30 relative fade-up">
+                <div class="absolute -top-4 -left-4 bg-[#6808F8] text-white px-4 py-1 rounded-lg text-sm font-bold shadow-lg">الحل عندي</div>
+                <h3 class="text-2xl font-bold mb-6 text-white">نهجي في العمل: التصميم من أجل البيع</h3>
+                <div class="space-y-5">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <span class="font-medium">تصميم نظيف يوجه العين نحو زر الشراء</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                            <i class="fa-solid fa-bolt"></i>
+                        </div>
+                        <span class="font-medium">أكواد نظيفة وسرعة تحميل صاروخية</span>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-400">
+                            <i class="fa-solid fa-brain"></i>
+                        </div>
+                        <span class="font-medium">هيكلية تعتمد على سيكولوجية الإقناع (AIDA)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-[#0f0329] px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 fade-up">
+                <h2 class="text-3xl md:text-5xl font-bold mb-4">بقدم ليك شنو؟</h2>
+                <p class="text-gray-400">أكتر من مجرد "برمجة"، أنا شريكك في النمو الرقمي.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Service 1 -->
+                <div class="glass p-6 rounded-xl hover:bg-purple-900/20 transition-colors text-center fade-up">
+                    <i class="fa-solid fa-pen-nib text-4xl text-[#6808F8] mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">تصميم UI/UX جذاب</h3>
+                    <p class="text-gray-400 text-sm">واجهات عصرية تعكس فخامة علامتك التجارية وتزرع الثقة.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="glass p-6 rounded-xl hover:bg-purple-900/20 transition-colors text-center fade-up delay-100">
+                    <i class="fa-solid fa-code text-4xl text-[#6808F8] mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">تطوير نظيف (Front-End)</h3>
+                    <p class="text-gray-400 text-sm">تحويل التصميم إلى كود HTML/Tailwind متجاوب وسريع.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="glass p-6 rounded-xl hover:bg-purple-900/20 transition-colors text-center fade-up delay-200">
+                    <i class="fa-solid fa-file-invoice-dollar text-4xl text-[#6808F8] mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">كتابة إعلانية (Copywriting)</h3>
+                    <p class="text-gray-400 text-sm">صياغة عناوين ونصوص تحفز الزائر على اتخاذ الإجراء فوراً.</p>
+                </div>
+                <!-- Service 4 -->
+                <div class="glass p-6 rounded-xl hover:bg-purple-900/20 transition-colors text-center fade-up delay-300">
+                    <i class="fa-solid fa-mobile-screen-button text-4xl text-[#6808F8] mb-4"></i>
+                    <h3 class="font-bold text-lg mb-2">أولوية للجوال (Mobile First)</h3>
+                    <p class="text-gray-400 text-sm">ضمان تجربة مثالية لـ 80% من زوارك الذين يستخدمون الهواتف.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-gradient-to-b from-[#180848] to-[#0f0329] px-4">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-5xl font-bold mb-12 text-center fade-up">أعمال افتخر بها <span class="text-[#6808F8]">وتحقق نتائج</span></h2>
+
+            <div id="projects-container" class="space-y-16"></div>
+
+            <a href="projects.html" target="_blank"
+   class="btn-glow w-full sm:w-auto bg-[#6808F8] hover:bg-[#5206c4] text-white text-lg font-bold mt-24 py-4 px-10 rounded-xl transition-all shadow-xl shadow-purple-600/30 flex items-center justify-center gap-3">
+    شاهد كل المشاريع
+<i class="fa-solid fa-arrow-left"></i>
+</a>
+            
+        </div>
+        
+    </section>
+
+    <!-- Why Choose Me (USP) -->
+    <section id="why-me" class="py-20 bg-[#0f0329] px-4 border-t-2 border-[#6808F8] rounded-xl">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12">لماذا "أنا" لمشروعك الحالي او القادم؟</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="fade-up">
+                    <div class="text-4xl mb-4">⚡</div>
+                    <h3 class="font-bold mb-2">تسليم في الموعد</h3>
+                    <p class="text-sm text-gray-400">أحترم وقتك. ستحصل على مشروعك في الوقت المتفق عليه دون مماطلة.</p>
+                </div>
+                <div class="fade-up delay-100">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="font-bold mb-2">تركيز على النتائج</h3>
+                    <p class="text-sm text-gray-400">لا أصمم للجمال فقط، أصمم لزيادة أرباحك وعائد استثمارك.</p>
+                </div>
+                <div class="fade-up delay-200">
+                    <div class="text-4xl mb-4">🤝</div>
+                    <h3 class="font-bold mb-2">دعم ما بعد البيع</h3>
+                    <p class="text-sm text-gray-400">لا أختفي بعد التسليم. أنا معك لضمان عمل الصفحة بكفاءة.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Strong CTA -->
+    <section class="py-24 relative overflow-hidden flex items-center justify-center px-4">
+        <!-- Background Overlay -->
+        <div class="absolute inset-0 bg-[#6808F8] opacity-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-[#0f0329] to-transparent"></div>
+        
+        <div class="glass-strong p-10 md:p-16 rounded-3xl max-w-4xl w-full text-center relative z-10 border border-purple-500/50 shadow-2xl shadow-purple-900/50 fade-up">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">هل أنت مستعد لمضاعفة مبيعاتك؟</h2>
+            <p class="text-gray-300 text-lg mb-10 max-w-2xl mx-auto">
+                لديك منتج رائع أو خدمة مميزة، كل ما ينقصك هو طريقة عرض احترافية تقنع العميل. خليني ابني ليك صفحة الهبوط التي يستحقها مشروعك.
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center">
+    <a href="mailto:info@ahmed-dev.cv" target="_blank" class="btn-glow bg-[#0072c6] hover:bg-[#005fa3] text-white text-xl font-bold py-5 px-14 rounded-full transition-all transform hover:scale-105 shadow-lg flex items-center gap-3">
+        <i class="fa-solid fa-envelope"></i>
+        تواصل معي عبر الإيميل الآن
+    </a>
+</div>
+            <p class="mt-6 text-sm text-gray-400">رد سريع خلال 24 ساعة</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#0b021f] py-12 border-t border-white/5 text-center px-4">
+        <div class="max-w-6xl mx-auto flex flex-col items-center">
+            <img src="logo.webp" alt="Logo" class="h-12 mb-6 opacity-80 grayscale hover:grayscale-0 transition-all">
+            
+            <div class="flex gap-6 mb-8">
+                <a href="https://wa.me/249998039517" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#6808F8] transition-colors text-white">
+                    <i class="fa-brands fa-whatsapp"></i>
+                </a>
+                <a href="mailto:a7medabdelrazig@gmail.com" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#6808F8] transition-colors text-white">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+                <a href="https://www.instagram.com/ahmed_dev11?igsh=MXJtaWVrMTZlYmhobA==" class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-[#6808F8] transition-colors text-white">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+            
+            <p class="text-gray-500 text-sm">
+                &copy; 2026 أحمد ديف. جميع الحقوق محفوظة. <br>
+                تصميم، كتابة محتوى وبرمجة بشغف 💙.
+            </p>
+        </div>
+    </footer>
+<script src="projects.js"></script>
+<script>
+  // تحميل المشاريع المميزة فقط (featured = true)
+  loadProjects(true);
+</script>
+    <!-- JavaScript Logic -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Logic
+            const menuBtn = document.getElementById('menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const hamburgerIcon = document.querySelector('.hamburger');
+            const mobileLinks = document.querySelectorAll('.mobile-link');
+            let isMenuOpen = false;
+
+            function toggleMenu() {
+                isMenuOpen = !isMenuOpen;
+                if (isMenuOpen) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    hamburgerIcon.classList.add('active');
+                    document.body.style.overflow = 'hidden'; // Prevent scrolling
+                } else {
+                    mobileMenu.classList.add('translate-x-full');
+                    hamburgerIcon.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            }
+
+            menuBtn.addEventListener('click', toggleMenu);
+
+            // Close menu when clicking a link
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', toggleMenu);
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (isMenuOpen && !mobileMenu.contains(e.target) && !menuBtn.contains(e.target)) {
+                    toggleMenu();
+                }
+            });
+
+            // Intersection Observer for Scroll Animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-up');
+            fadeElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body>
+</html>
